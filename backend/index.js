@@ -1,3 +1,5 @@
+// App startup and routing
+
 const express = require('express')
 
 const app = express()
