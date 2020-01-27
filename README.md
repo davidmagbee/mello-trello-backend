@@ -14,8 +14,14 @@ Later versions of the application will see increased functionality of task assig
 - [frontend deployment](https://teamgrid.herokuapp.com/)
 - [backend deployment]()
 
+## Entity-Relationship Diagram
+- [Entity-Relationship Diagram](https://ibb.co/y55VzYJ)
+
 ## Wireframes
-- [Complete Wireframe]('./planning/images/wireframes.pdf')
+- [Home](https://ibb.co/m5T3J76)
+- [New Grid](https://ibb.co/LRqnhQ4)
+- [Grid View](https://ibb.co/HXWCMpg)
+- [Card View](https://ibb.co/d7GCYzv)
 
 ### MVP/PostMVP
 
