@@ -4,7 +4,9 @@ This is the backend repository for the General Assembly Project 3 group project.
 ## Project Description
 This is a MERN full stack group development project utilizing MongoDB, Express, React, and Node - not to mention HTML, CSS, and JavaScript. 
 
-The project is 
+The project is a simplified replication of the project planning app Trello. The front end provides a gui to create 'Grids' which are overall projects with sub tasks associated with them. Grids consist of Columns and contain more specific sub tasks - 'Cards' - for completion for the overall Column objective. Cards have the ability to take on comments for ongoing discussion of each specific task. 
+
+Later versions of the application will see increased functionality of task assignment, due dates, reminders, color coding, drag and drop gui functionality, and much more. 
 
 ## Project Links
 - [frontend repo]()
@@ -13,7 +15,7 @@ The project is
 - [backend deployment]()
 
 ## Wireframes
-- [wireframes]()
+- [Complete Wireframe]('/planning/images/wireframes.pdf')
 
 ### MVP/PostMVP
 
@@ -24,23 +26,53 @@ The project is
 
 #### Post MVP
 #### Silver
+- users
+- task assignment
+- due dates
+- priority
 
 #### Gold
+- drag & drop functionality
 
 ## Components
+[Component Tree]('/planning/component-tree.txt')
 
 ## Time Frames
 
 ## Models
+1. Grid
+- This holds and references the Columns and Grid CRUD functionality.
+2. Column
+- This holds and references the Cards and Column CRUD functionality.
+3. Card
+- This holds and references the Comments and Card CRUD functionality.
+4. Comments
+- This holds Comments and Comment CRUD functionality.
 
 ## Time Frames
 
 ## Additional Libraries
+[Next.js](https://nextjs.org/)
 
 ## Code Snippet
+We'll be using reference to route data accordingly to other models. 
 
 ```
+const mongoose = require('../db/connection');
+const Schema = mongoose.Schema;
 
+const GridSchema = new Schema({
+  boardName: String,
+  boardDescription: String,
+  boardLists: {
+    type: Schema.Types.ObjectId,
+    ref: "List"
+  }
+});
+
+const Grid = mongoose.model('Grid', GridSchema);
+
+module.exports = Grid;
 ```
 
 ## Issues and Resolutions

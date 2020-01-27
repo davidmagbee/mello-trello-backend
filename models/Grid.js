@@ -6,7 +6,7 @@ const GridSchema = new Schema({
   boardDescription: String,
   boardLists: {
     type: Schema.Types.ObjectId,
-    ref: "List"
+    ref: 'Column'
   }
 });
 
