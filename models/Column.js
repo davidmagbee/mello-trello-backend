@@ -1,7 +1,7 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const olumnSchema = new Schema({
+const columnSchema = new Schema({
     columnName: String,
     columnDescription: String,
     tasks: {
