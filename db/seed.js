@@ -15,38 +15,34 @@ Grid.deleteMany({}).then(() => {
         Comment.deleteMany({}).then(() => {
             console.log("deleted all comments")
 
-Grid.create({
-    gridName: "example board",
-    color: "#123151",
-    girdDescription: "lorem ipsum"
-    }).then(example => {
-    // create column and associate one with the grid
-    Column.create({
-        columnName: "Project 1",
-        columnDescription: "Project 1 of SEIR",
-        tasks: example.id
-    }).then(project => {
-        // we have to call save() or the push() never writes to the database
-        example.favorites.push(project);
-        example.save();
-        console.log("created example board: Project 1")
-    }).then(project => {
-        // create task and associate one with a column
-        Task.create({
-            taskName: "example Task",
-            assignedTo: ["David", "Sem", "Mike", "Srikar"],
-            dueDate: "1/25/2020",
-            lastModified: "1/25/2020",
-            taskDescription: "lorem ipsum",
-            taskPriority: 5,
-            estimatedTime: 40,
-            color: "yellow",
-            tasks: example.id
-        }).then(project => {
-            // we have to call save() or the push() never writes to the database
-            example.favorites.push(project);
-            example.save();
-            console.log("created example board: Project 1")
+Comment.create({
+    commenterName: "Mike",
+    comment: "Jabberwocky",
+    }).then(comment => {
+    // create task and associate one with the comment
+    Task.create({
+        taskName: "example Task",
+        assignedTo: ["David", "Sem", "Mike", "Srikar"],
+        dueDate: "1/25/2020",
+        lastModified: "1/25/2020",
+        taskDescription: "lorem ipsum",
+        taskPriority: 5,
+        estimatedTime: 40,
+        color: "yellow",
+        comments: comment.id
+    }).then(task => {
+        // create column and associate one with a task
+        Column.create({
+            columnName: "example Column",
+            columnDescription: ["column Description"],
+            tasks: task.id
+        }).then(column => {
+            // create grid and associate one with a solumn
+            Grid.create({
+                gridName: "example Column",
+                color: "#123151",
+                gridDescription: ["column Description"],
+                columns: column.id
 
         })
     })
