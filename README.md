@@ -36,6 +36,74 @@ Later versions of the application will see increased functionality of task assig
 
 ## Components
 [Component Tree]('/planning/component-tree.txt')
+```
+Current Component Tree:
+.
+├── Grids
+│   ├── Columns
+│   │   ├── ColumnAdd
+│   │   │   ├── ColumnAddButton.js
+│   │   │   └── ColumnAddModal.js
+│   │   ├── ColumnDelete
+│   │   │   ├── ColumnDeleteButton.js
+│   │   │   └── Maybe\ -\ ColumnDeleteModal.js
+│   │   ├── ColumnDisplay
+│   │   │   ├── Column.js
+│   │   │   ├── ColumnContainer.js
+│   │   │   └── ColumnDisplay.js
+│   │   ├── ColumnUpdate
+│   │   │   ├── ColumnUpdateButton.js
+│   │   │   └── ColumnUpdateModal.js
+│   │   └── Tasks
+│   │       ├── Comments
+│   │       │   ├── CommentAdd
+│   │       │   │   └── CommentsAddInput.js
+│   │       │   ├── CommentDelete
+│   │       │   │   └── Maybe\ -\ CommentDelete.js
+│   │       │   ├── CommentDisplay
+│   │       │   │   ├── Comment.js
+│   │       │   │   ├── CommentsContainer.js
+│   │       │   │   └── CommentsDisplayModal.js
+│   │       │   └── CommentUpdate
+│   │       │       └── Maybe\ -\ CommentUpdate.js
+│   │       ├── TaskAdd
+│   │       │   ├── TaskAddButton.js
+│   │       │   └── TaskAddModal.js
+│   │       ├── TaskDelete
+│   │       │   └── TaskDeleteButton.js
+│   │       ├── TaskDisplay
+│   │       │   ├── Task.js
+│   │       │   └── TaskContainer.js
+│   │       └── TaskUpdate
+│   │           ├── TaskUpdateButton.js
+│   │           └── TaskUpdateModal.js
+│   ├── GridAdd
+│   │   ├── GridAddButton.js
+│   │   └── GridAddModal.js
+│   ├── GridDelete
+│   │   ├── GridDeleteButton.js
+│   │   └── Maybe\ -\ GridBoardModal.js
+│   ├── GridDisplay
+│   │   ├── Grid.js
+│   │   ├── GridContainer.js
+│   │   └── MyGrids.js
+│   └── GridUpdate
+│       ├── GridUpdateButton.js
+│       └── GridUpdateModal.js
+├── Index
+│   ├── SimpleBackground.js
+│   └── Teamgrid.js
+└── Layout
+    ├── Footer
+    │   ├── Courtesies.js
+    │   ├── Footer.js
+    │   └── MadeBy.js
+    ├── Header
+    │   ├── Header.js
+    │   ├── Mark.js
+    │   └── Nav.js
+    └── Layout.js
+```
 
 ## Time Frames
 
