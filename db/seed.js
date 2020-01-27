@@ -32,9 +32,15 @@ Grid.create({
         console.log("created example board: Project 1")
     }).then(project => {
         // create task and associate one with a column
-        Column.create({
-            columnName: "Project 1",
-            columnDescription: "Project 1 of SEIR",
+        Task.create({
+            taskName: "example Task",
+            assignedTo: ["David", "Sem", "Mike", "Srikar"],
+            dueDate: "1/25/2020",
+            lastModified: "1/25/2020",
+            taskDescription: "lorem ipsum",
+            taskPriority: 5,
+            estimatedTime: 40,
+            color: "yellow",
             tasks: example.id
         }).then(project => {
             // we have to call save() or the push() never writes to the database
