@@ -4,10 +4,13 @@ This is the backend repository for the General Assembly Project 3 group project.
 ## Project Description
 This is a MERN full stack group development project utilizing MongoDB, Express, React, and Node - not to mention HTML, CSS, and JavaScript. 
 
+The project is 
+
 ## Project Links
 - [frontend repo]()
 - [backend repo]()
-- [deployed site]()
+- [frontend deployment](https://teamgrid.herokuapp.com/)
+- [backend deployment]()
 
 ## Wireframes
 - [wireframes]()
@@ -15,11 +18,11 @@ This is a MERN full stack group development project utilizing MongoDB, Express, 
 ### MVP/PostMVP
 
 #### MVP
-
 #### Bronze
+- Front-End CRUD
+- Back-End CRUD
 
 #### Post MVP
-
 #### Silver
 
 #### Gold
