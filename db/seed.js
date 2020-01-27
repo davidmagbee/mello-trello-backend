@@ -30,20 +30,23 @@ Comment.create({
         estimatedTime: 40,
         color: "yellow",
         comments: comment.id
+    })    
     }).then(task => {
         // create column and associate one with a task
         Column.create({
             columnName: "example Column",
             columnDescription: ["column Description"],
             tasks: task.id
+        })    
         }).then(column => {
-            // create grid and associate one with a solumn
+            // create grid and associate one with a column
             Grid.create({
                 gridName: "example Column",
                 color: "#123151",
                 gridDescription: ["column Description"],
                 columns: column.id
-
+            })
+        })
         })
     })
   })  
