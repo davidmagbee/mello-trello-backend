@@ -1,9 +1,9 @@
 const mongoose = require("./connection");
 
-const Grid = require("./models/Grid");
-const Column = require("./models/Column")
-const Task = require("./models/Task")
-const Comment = require("./models/Comment")
+const Grid = require("../models/Grid");
+const Column = require("../models/Column")
+const Task = require("../models/Task")
+const Comment = require("../models/Comment")
 
 // clear the database of records using both models
 Grid.deleteMany({}).then(() => {
