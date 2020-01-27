@@ -1,14 +1,15 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const ColumnSchema = new Schema({
-    listName: String,
-    cards: {
+const olumnSchema = new Schema({
+    columnName: String,
+    columnDescription: String,
+    tasks: {
         type: Schema.Types.ObjectId,
-        ref: "Card"
+        ref: "Task"
 }
 });
 
-const Column = mongoose.model('Column', ColumnSchema);
+const Column = mongoose.model('Column', columnSchema);
 
-module.exports - Column;
+module.exports = Column;

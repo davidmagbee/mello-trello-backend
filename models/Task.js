@@ -1,20 +1,21 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const CardSchema = new Schema({
-    cardName: String,
+const taskSchema = new Schema({
+    taskName: String,
     assigneeTo: String,
     dueDate: Date,
     lastModified: Date,
-    cardDescription: String,
-    cardPriority: Number,
-    cardColor: String,
+    taskDescription: String,
+    taskPriority: Number,
+    estimatedTime: Number,
+    color: String,
     comments: {
         type: Schema.Types.ObjectId,
         ref: "Comment"
     }
 })
 
-const Card = mongoose.model('Card', CardSchema);
+const Task = mongoose.model('Task', taskSchema);
 
-module.exports - Card;
+module.exports = Task;
