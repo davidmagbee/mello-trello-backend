@@ -26,19 +26,21 @@ Later versions of the application will see increased functionality of task assig
 ### MVP/PostMVP
 
 #### MVP
-#### Bronze
+##### Bronze
 - Front-End CRUD
 - Back-End CRUD
 - Fully linked routes between the front and back ends. 
+- Front and Back ends deployed
+- Device responsive build and functionality
 
 #### Post MVP
-#### Silver
+##### Silver
 - users
 - task assignment
 - due dates
 - priority
 
-#### Gold
+##### Gold
 - drag & drop functionality
 
 ## Components
