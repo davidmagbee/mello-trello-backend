@@ -2,7 +2,7 @@
 This is the backend repository for the General Assembly Project 3 group project. This repository will be used to house the backend construct of our group's project - a project management board inspired by Trello, currently dubbed Mello Trello. 
 
 ## Project Description
-This is a MERN full stack group development project utilizing MongoDB, Express, React, and Node - not to mention HTML, CSS, and JavaScript. 
+This is a MERN full stack group development project utilizing MongoDB, Express, React, and Node - not to mention HTML, CSS, and JavaScript and includes the Next.js library and is deployed via Heroku and MongoDB Atlas. 
 
 The project is a simplified replication of the project planning app Trello. The front end provides a gui to create 'Grids' which are overall projects with sub tasks associated with them. Grids consist of Columns and contain more specific sub tasks - 'Cards' - for completion for the overall Column objective. Cards have the ability to take on comments for ongoing discussion of each specific task. 
 
