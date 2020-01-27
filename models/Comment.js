@@ -1,12 +1,12 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const CommentSchema = new Schema({
+const commentSchema = new Schema({
     // username will change to a ref for User Schema post MVP
-    username: String,
+    commenterName: String,
     comment: String
 })
 
-const Comment = mongoose.model('Comment', CommentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
-module.exports - Comment;
+module.exports = Comment;
