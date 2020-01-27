@@ -9,13 +9,13 @@ The project is a simplified replication of the project planning app Trello. The 
 Later versions of the application will see increased functionality of task assignment, due dates, reminders, color coding, drag and drop gui functionality, and much more. 
 
 ## Project Links
-- [frontend repo]()
-- [backend repo]()
+- [frontend repo](https://github.com/svkalvakolanu/teamgridFE)
+- [backend repo](https://github.com/macuser413/mello-trello-backend)
 - [frontend deployment](https://teamgrid.herokuapp.com/)
 - [backend deployment]()
 
 ## Wireframes
-- [Complete Wireframe]('/planning/images/wireframes.pdf')
+- [Complete Wireframe]('./planning/images/wireframes.pdf')
 
 ### MVP/PostMVP
 
