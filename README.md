@@ -29,6 +29,7 @@ Later versions of the application will see increased functionality of task assig
 #### Bronze
 - Front-End CRUD
 - Back-End CRUD
+- Fully linked routes between the front and back ends. 
 
 #### Post MVP
 #### Silver
