@@ -1,7 +1,16 @@
 // Specify the backend mongodb connection string
-
 const mongoose = require('mongoose')
+
 mongoose.Promise = Promise
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/project3'
+
+let mongoURI = "";
+if (process.env.NODE_ENV === "production") {
+    mongoURI = process.env.DB_URL;
+} else {
+    mongoURI = 'mongodb://localhost/project3';
+}
+
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+
+
 module.exports = mongoose
