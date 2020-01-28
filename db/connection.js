@@ -3,14 +3,8 @@ const mongoose = require('mongoose')
 
 mongoose.Promise = Promise
 
-let mongoURI = "";
-if (process.env.NODE_ENV === "production") {
-    mongoURI = process.env.DB_URL;
-} else {
-    mongoURI = 'mongodb://localhost/project3';
-}
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/project3'
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
-
 
 module.exports = mongoose
