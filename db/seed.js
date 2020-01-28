@@ -1,9 +1,9 @@
 const mongoose = require("./connection");
 
-const Grid = require("./models/Grid");
-const Column = require("./models/Column")
-const Task = require("./models/Task")
-const Comment = require("./models/Comment")
+const Grid = require("../models/Grid");
+const Column = require("../models/Column")
+const Task = require("../models/Task")
+const Comment = require("../models/Comment")
 
 // clear the database of records using both models
 Grid.deleteMany({}).then(() => {
@@ -20,6 +20,7 @@ Comment.create({
     comment: "Jabberwocky",
     }).then(comment => {
     // create task and associate one with the comment
+    console.log(comment)
     Task.create({
         taskName: "example Task",
         assignedTo: ["David", "Sem", "Mike", "Srikar"],
@@ -30,23 +31,26 @@ Comment.create({
         estimatedTime: 40,
         color: "yellow",
         comments: comment.id
-    })    
+       
     }).then(task => {
         // create column and associate one with a task
+        console.log(task)
         Column.create({
             columnName: "example Column",
-            columnDescription: ["column Description"],
+            columnDescription: "column Description",
             tasks: task.id
-        })    
+      
         }).then(column => {
             // create grid and associate one with a column
             Grid.create({
                 gridName: "example Column",
                 color: "#123151",
-                gridDescription: ["column Description"],
+                gridDescription: "column Description",
                 columns: column.id
             })
         })
+    })
+})
         })
     })
   })  
