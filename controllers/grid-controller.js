@@ -23,7 +23,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Grid.findOneAndRemove({ _id: req.params.id }).then(grid => res.json);
+  Grid.findOneAndRemove({ _id: req.params.id }).then(grid => res.json(grid));
 });
 
 module.exports = router;
