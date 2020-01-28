@@ -5,6 +5,8 @@ const Column = require("../models/Column");
 const Task = require("../models/Task");
 const Comment = require("../models/Comment");
 
+const devseedData = require('./dev-seed.json');
+
 // clear the database of records using both models
 Grid.deleteMany({}).then(() => {
   console.log("deleted all grids");

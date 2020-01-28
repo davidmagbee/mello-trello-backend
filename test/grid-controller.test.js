@@ -1,7 +1,67 @@
 const should = require('chai').should()
 const expect = require('chai').expect
 const supertest = require('supertest')
+const chai = require("chai")
+const package = require("../package.json")
 const api = supertest('http://localhost:5000')
+
+
+
+describe("package.json dependencies", () => {
+  it("should contain Express", done => {
+    expect(package.dependencies.express).not.to.be.undefined
+    done()
+  })
+
+  it("should contain Mongoose", done => {
+    expect(package.dependencies.mongoose).not.to.be.undefined
+    done()
+  })
+})
+
+describe("The project file structure ", () => {
+  it("should have a gridController at ./controllers/grid-controller.js", done => {
+    let importMessagesController = require("../controllers/grid-controller.js")
+
+    // expect(importMessagesController).to.not.throw()
+    expect(importMessagesController).not.to.be.undefined
+    done()
+  })
+
+  it("should have a gridController at ./controllers/grid-controller.js", done => {
+    let importMessagesController = require("../controllers/grid-controller.js")
+
+    // expect(importMessagesController).to.not.throw()
+    expect(importMessagesController).not.to.be.undefined
+    done()
+  })
+
+  it("should have a Grid model inside ./models/Grid.js", done => {
+    let importModel = require("../models/Grid")
+    expect(importModel).to.not.throw()
+    expect(importModel).not.to.be.undefined
+    done()
+  })
+
+  it("should have a Column model inside ./models/Column.js", done => {
+    let importModel = require("../models/Column")
+    expect(importModel).to.not.throw()
+    expect(importModel).not.to.be.undefined
+    done()
+  })
+  it("should have a Comment model inside ./models/Comment.js", done => {
+    let importModel = require("../models/Comment")
+    expect(importModel).to.not.throw()
+    expect(importModel).not.to.be.undefined
+    done()
+  })
+  it("should have a Task model inside ./models/Task.js", done => {
+    let importModel = require("../models/Task")
+    expect(importModel).to.not.throw()
+    expect(importModel).not.to.be.undefined
+    done()
+  })
+})
 
 
 describe("GET /grid",  () => {
@@ -52,6 +112,18 @@ describe('POST /grid', () => {
         done();
       });
   });
+
+  it("should have a 'gridName' equal to Test Board", done => {
+    api
+      .get("/grid")
+      .set("Accept", "application/json")
+      .end((err, res) => {
+        let length = res.body.length;
+        console.log('res.body[length - 1].gridName = '+res.body[length].gridName)
+        expect(res.body[length].gridName).to.equal('Test Board')
+        done();
+      });
+  });
   
 })
 describe("DELETE /grid", () => {
@@ -68,7 +140,7 @@ describe("DELETE /grid", () => {
         .get("/grid")
         .set("Accept", "application/json")
         .end((err, res) => {
-            console.log('res.body'+ res.body)
+            console.log('res.body.length'+ res.body.length)
           expect(res.body.length).to.equal(res.body.length);
           done();
         });
@@ -78,7 +150,6 @@ describe("DELETE /grid", () => {
           api
             .put("/grid")
             .send({
-              
               gridName: "example Column",
               color: "#123151"
             })
@@ -91,8 +162,8 @@ describe("DELETE /grid", () => {
             .get("/grid")
             .set("Accept", "application/json")
             .end((err, res) => {
-                console.log('res.body = '+res.info)
-              expect(res.info).to.equal(false);
+                console.log('res.body = '+res.body.length)
+              expect(res.body.length).to.equal(res.body.length);
               done();
             });
         });

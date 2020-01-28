@@ -9,8 +9,8 @@ const GridSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Column'
   }
-});
+}); 
 
-const Grid = mongoose.model('Grid', GridSchema);
+const Grid = mongoose.model('GridSchema', GridSchema);
 
 module.exports = Grid;
