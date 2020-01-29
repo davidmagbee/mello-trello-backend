@@ -9,11 +9,7 @@ const taskSchema = new Schema({
     taskDescription: String,
     taskPriority: Number,
     estimatedTime: Number,
-    color: String,
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: "Comment"
-    }
+    color: String
 })
 
 const Task = mongoose.model('Task', taskSchema);

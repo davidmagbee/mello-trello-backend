@@ -3,11 +3,7 @@ const Schema = mongoose.Schema;
 
 const columnSchema = new Schema({
     columnName: String,
-    columnDescription: String,
-    tasks: {
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-}
+    columnDescription: String
 });
 
 const Column = mongoose.model('Column', columnSchema);
