@@ -28,8 +28,8 @@ router.get("/:gridName/:columnName/:taskName", (req, res) => {
 // });
 
 router.post("/:gridName/:columnName/:taskName", (req, res) => {
-  Grid.findOne({ gridName: req.params.gridName }).then(() => {
-    Column.findOne({ columnName: req.params.columnName }).then(() => {
+  Grid.findOne({ gridName: req.params.gridName }).then((grid) => {
+    Column.findOne({ columnName: req.params.columnName }).then((column) => {
       Task.findOne({ taskName: req.params.taskName }).then(() => {
         Comment.create(req.body)
           .then(comment => {
@@ -37,6 +37,7 @@ router.post("/:gridName/:columnName/:taskName", (req, res) => {
           })
           .then(() => {
             grid.save();
+            column.save();
             res.json(comment);
           });
       });

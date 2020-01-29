@@ -14,7 +14,7 @@ router.post("/:gridName", (req, res) => {
     Grid.findOne({ gridName: req.params.gridName }).then(grid => {
       Column.create(req.body)
         .then(column => {
-          Grid.columns.push(column);
+          grid.columns.push(column);
         })
         .then(() => {
           grid.save();
@@ -27,10 +27,10 @@ router.put("/:gridName/:columnName", (req, res) => {
     Grid.findOne({ gridName: req.params.gridName }).then(grid => {
       Column.create(req.body)
         .then(column => {
-          let filter = grid.columns.filter(arr => arr.columnName === req.params.columnName);
-          let index = grid.columns.indexOf(filter[0]);
+          let filter = grid.column.filter(arr => arr.columnName === req.params.columnName);
+          let index = grid.column.indexOf(filter[0]);
           if (index >= 0) {
-            grid.columns.splice(index, 1, column);
+            grid.column.splice(index, 1, column);
           }
         })
         .then(() => {
