@@ -4,14 +4,14 @@ const router = express.Router();
 const Grid = require("../models/Grid");
 const Column = require("../models/Column");
 
-router.get("/:gridName", (req, res) => {
-    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+router.get("/:gId", (req, res) => {
+    Grid.findOne({ _id: req.params.gId }).then(grid => {
         res.json(grid.columns);
     });
 });
 
-router.post("/:gridName", (req, res) => {
-    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+router.post("/:gId", (req, res) => {
+    Grid.findOne({ _id: req.params.gId }).then(grid => {
       Column.create(req.body)
         .then(column => {
           grid.columns.push(column);
@@ -23,11 +23,11 @@ router.post("/:gridName", (req, res) => {
     });
   });
 
-router.put("/:gridName/:columnName", (req, res) => {
-    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+router.put("/:gId/:cId", (req, res) => {
+    Grid.findOne({ _id: req.params.gId }).then(grid => {
       Column.create(req.body)
         .then(column => {
-          let filter = grid.column.filter(arr => arr.columnName === req.params.columnName);
+          let filter = grid.column.filter(arr => arr.cId === req.params.cId);
           let index = grid.column.indexOf(filter[0]);
           if (index >= 0) {
             grid.column.splice(index, 1, column);
@@ -40,9 +40,9 @@ router.put("/:gridName/:columnName", (req, res) => {
     });
   });
 
-router.delete("/:gridName/:commentName", (req, res) => {
-  Grid.findOne({ gridName: req.params.gridName }).then(grid => {
-    let filter = grid.columns.filter(arr => arr.columnName != req.params.cName);
+router.delete("/:gId/:cName", (req, res) => {
+  Grid.findOne({ _id: req.params.gId }).then(grid => {
+    let filter = grid.columns.filter(arr => arr.cId != req.params.cName);
     grid.columns = filter;
     grid.save();
     res.json(grid);

@@ -7,8 +7,8 @@ router.get("/", (req, res) => {
   Grid.find().then(grids => res.json(grids));
 });
 
-router.get("/:gridName", (req, res) => {
-  Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+router.get("/:id", (req, res) => {
+  Grid.findOne({ _id: req.params.id }).then(grid => {
     res.json(grid);
   });
 });
@@ -21,16 +21,16 @@ router.post("/", (req, res) => {
   });
 });
 
-router.put("/:gridName", (req, res) => {
-  Grid.findByIdAndUpdate({ gridName: req.params.id }, req.body).then(() => {
+router.put("/:id", (req, res) => {
+  Grid.findByIdAndUpdate({ _id: req.params.id }, req.body).then(() => {
     Grid.find({}).then(grid => {
       res.json(grid);
     });
   });
 });
 
-router.delete("/:gridName", (req, res) => {
-  Grid.findOneAndDelete({ gridName: req.params.id }).then(() => {
+router.delete("/:id", (req, res) => {
+  Grid.findOneAndDelete({ _id: req.params.id }).then(() => {
     Grid.find({}).then(grid => {
       res.json(grid);
     });
