@@ -1,31 +1,52 @@
 const express = require("express");
 const router = express.Router();
 
+const Grid = require("../models/Grid");
 const Column = require("../models/Column");
 
-router.get("/", (req, res) => {
-  Column.find().then(columns => res.json(columns));
+router.get("/:gridName", (req, res) => {
+    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+        res.json(grid.columns);
+    });
 });
 
-router.post("/", (req, res) => {
-  Column.create(req.body).then(column => {
-    res.json(column);
+router.post("/:gridName", (req, res) => {
+    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+      Column.create(req.body)
+        .then(column => {
+          Grid.columns.push(column);
+        })
+        .then(() => {
+          grid.save();
+          res.json(grid);
+        });
+    });
   });
-});
 
-router.put("/:id", (req, res) => {
-  Column.findByIdAndUpdate({ _id: req.params.id }, req.body, {
-    new: true
-  }).then(column => {
-    column.save();
-    res.json(column);
+router.put("/:gridName/:columnName", (req, res) => {
+    Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+      Column.create(req.body)
+        .then(column => {
+          let filter = grid.columns.filter(arr => arr.columnName === req.params.columnName);
+          let index = grid.columns.indexOf(filter[0]);
+          if (index >= 0) {
+            grid.columns.splice(index, 1, column);
+          }
+        })
+        .then(() => {
+          grid.save(err => console.log(err));
+          res.json(grid);
+        });
+    });
   });
-});
 
-router.delete("/:id", (req, res) => {
-  Column.findByIdAndRemove({ _id: req.params.id }).then(column =>
-    res.json(column)
-  );
+router.delete("/:gridName/:commentName", (req, res) => {
+  Grid.findOne({ gridName: req.params.gridName }).then(grid => {
+    let filter = grid.columns.filter(arr => arr.columnName != req.params.cName);
+    grid.columns = filter;
+    grid.save();
+    res.json(grid);
+  });
 });
 
 module.exports = router;

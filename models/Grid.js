@@ -1,12 +1,13 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const commentSchema = new mongoose.Schema({
+const commentSchema = new Schema({
+
   commenterName: String,
   comment: String
 });
 
-const taskSchema = new mongoose.Schema({
+const taskSchema = new Schema({
   taskName: String,
   assignedTo: String,
   dueDate: String,
@@ -18,19 +19,19 @@ const taskSchema = new mongoose.Schema({
   comments: [commentSchema]
 });
 
-const columnSchema = new mongoose.Schema({
+const columnSchema = new Schema({
   columnName: String,
   columnDescription: String,
   tasks: [taskSchema]
 });
 
-const gridSchema = new mongoose.Schema({
+const gridSchema = new Schema({
   gridName: String,
   color: String,
   gridDescription: String,
   columns: [columnSchema]
 });
 
-const Grid = mongoose.model("Grid", gridSchema);
+const Grid = mongoose.model('Grid', gridSchema);
 
 module.exports = Grid;

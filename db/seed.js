@@ -1,5 +1,3 @@
-const mongoose = require("./connection");
-
 const Grid = require("../models/Grid");
 const data = require("./dev-seed.json");
 

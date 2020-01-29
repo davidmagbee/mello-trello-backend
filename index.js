@@ -15,10 +15,10 @@ app.get('/', (req, res) => {
     res.redirect('/grid');
 });
 
-app.use('/grid', gridController);
-app.use('/column', columnController);
-app.use('/task', taskController);
-app.use('/comment', commentController);
+app.use('/grids', gridController);
+app.use('/columns', columnController);
+app.use('/tasks', taskController);
+app.use('/comments', commentController);
 
 app.set('port', process.env.PORT || 5000);
 
