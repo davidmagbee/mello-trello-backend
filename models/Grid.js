@@ -2,6 +2,7 @@ const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
+
   commenterName: String,
   comment: String
 });
