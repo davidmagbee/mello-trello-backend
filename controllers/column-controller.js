@@ -14,11 +14,11 @@ router.post("/:gId", (req, res) => {
     Grid.findOne({ _id: req.params.gId }).then(grid => {
       Column.create(req.body)
         .then(column => {
-          grid.columns.push(column);
+          grid.columns.push(column._id);
+          res.json(column)
         })
         .then(() => {
           grid.save();
-          res.json(grid);
         });
     });
   });
@@ -30,7 +30,7 @@ router.put("/:gId/:cId", (req, res) => {
           let filter = grid.column.filter(arr => arr.cId === req.params.cId);
           let index = grid.column.indexOf(filter[0]);
           if (index >= 0) {
-            grid.column.splice(index, 1, column);
+            grid.columns.splice(index, 1, column);
           }
         })
         .then(() => {

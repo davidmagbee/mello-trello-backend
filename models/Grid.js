@@ -5,10 +5,12 @@ const GridSchema = new Schema({
   gridName: String,
   color: String,
   gridDescription: String,
-  columns: {
+  columns: [
+    {
     type: Schema.Types.ObjectId,
     ref: 'Column'
-  }
+    }
+  ]
 });
 
 const Grid = mongoose.model('Grid', GridSchema);

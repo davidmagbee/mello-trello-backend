@@ -8,7 +8,7 @@ const columnSchema = new Schema({
         {
         type: Schema.Types.ObjectId,
         ref: "Task"
-}
+        }
     ]
 });
 
