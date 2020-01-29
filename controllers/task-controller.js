@@ -16,12 +16,12 @@ router.post("/:gId/:cId", (req, res) => {
     Column.findOne({ _id: req.params.cId }).then((column) => {
       Task.create(req.body)
         .then(task => {
-          column.tasks.push(task);
+          column.tasks.push(task._id)
+          res.json(task)
         })
         .then(() => {
           grid.save();
           column.save();
-          res.json(grid);
         });
     });
   });
