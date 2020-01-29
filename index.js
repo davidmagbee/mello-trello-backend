@@ -12,7 +12,7 @@ const taskController = require('./controllers/task-controller');
 const commentController = require('./controllers/comment-controller');
 
 app.get('/', (req, res) => {
-    res.redirect('/grid');
+    res.redirect('/grids');
 });
 
 app.use('/grids', gridController);
