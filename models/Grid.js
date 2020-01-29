@@ -1,16 +1,36 @@
 const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
-const GridSchema = new Schema({
+const commentSchema = new mongoose.Schema({
+  commenterName: String,
+  comment: String
+});
+
+const taskSchema = new mongoose.Schema({
+  taskName: String,
+  assignedTo: String,
+  dueDate: String,
+  lastModified: String,
+  taskDescription: String,
+  taskPriority: String,
+  estimatedTime: String,
+  color: String,
+  comments: [commentSchema]
+});
+
+const columnSchema = new mongoose.Schema({
+  columnName: String,
+  columnDescription: String,
+  tasks: [taskSchema]
+});
+
+const gridSchema = new mongoose.Schema({
   gridName: String,
   color: String,
   gridDescription: String,
-  columns: {
-    type: Schema.Types.ObjectId,
-    ref: 'Column'
-  }
+  columns: [columnSchema]
 });
 
-const Grid = mongoose.model('Grid', GridSchema);
+const Grid = mongoose.model("Grid", gridSchema);
 
 module.exports = Grid;
