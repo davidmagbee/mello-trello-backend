@@ -12,8 +12,8 @@ const Comment = require("../models/Comment");
 // });
 
 router.get("/:gId/:cId/:tId", (req, res) => {
-  Grid.findOne({ _id: req.params.gId }).then((grid) => {
-    Column.findOne({ _id: req.params.cId }).then((column) => {
+  Grid.findOne({ _id: req.params.gId }).then(grid => {
+    Column.findOne({ _id: req.params.cId }).then(column => {
       Task.findOne({ _id: req.params.tId }).then(comment => {
         res.json(comment);
       });
@@ -28,18 +28,18 @@ router.get("/:gId/:cId/:tId", (req, res) => {
 // });
 
 router.post("/:gId/:cId/:tId", (req, res) => {
-  Grid.findOne({ _id: req.params.gId }).then((grid) => {
-    Column.findOne({ _id: req.params.cId }).then((column) => {
-      Task.findOne({ _id: req.params.tId }).then((task) => {
+  Grid.findOne({ _id: req.params.gId }).then(grid => {
+    Column.findOne({ _id: req.params.cId }).then(column => {
+      Task.findOne({ _id: req.params.tId }).then(task => {
         Comment.create(req.body)
           .then(comment => {
-            grid.columns.tasks.push(comment);
+            task.comments.push(comment._id);
+            res.json(comment);
           })
           .then(() => {
             grid.save();
             column.save();
             task.save();
-            res.json(comment);
           });
       });
     });

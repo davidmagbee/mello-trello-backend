@@ -5,48 +5,39 @@ const Grid = require("../models/Grid");
 const Column = require("../models/Column");
 
 router.get("/:gId", (req, res) => {
-    Grid.findOne({ _id: req.params.gId }).then(grid => {
-        res.json(grid.columns);
-    });
-});
-
-router.post("/:gId", (req, res) => {
-    Grid.findOne({ _id: req.params.gId }).then(grid => {
-      Column.create(req.body)
-        .then(column => {
-          grid.columns.push(column._id);
-          res.json(column)
-        })
-        .then(() => {
-          grid.save();
-        });
-    });
-  });
-
-router.put("/:gId/:cId", (req, res) => {
-    Grid.findOne({ _id: req.params.gId }).then(grid => {
-      Column.create(req.body)
-        .then(column => {
-          let filter = grid.column.filter(arr => arr.cId === req.params.cId);
-          let index = grid.column.indexOf(filter[0]);
-          if (index >= 0) {
-            grid.columns.splice(index, 1, column);
-          }
-        })
-        .then(() => {
-          grid.save(err => console.log(err));
-          res.json(grid);
-        });
-    });
-  });
-
-router.delete("/:gId/:cName", (req, res) => {
   Grid.findOne({ _id: req.params.gId }).then(grid => {
-    let filter = grid.columns.filter(arr => arr.cId != req.params.cName);
-    grid.columns = filter;
-    grid.save();
-    res.json(grid);
+    res.json(grid.columns);
   });
 });
+
+router.post("/:gId/", (req, res) => {
+  Grid.findOne({ _id: req.params.gId }).then(grid => {
+    Column.create(req.body)
+      .then(column => {
+        grid.columns.push(column._id);
+        res.json(column);
+      })
+      .then(() => {
+        grid.save();
+      });
+  });
+});
+
+router.put("/:gId/:cId/", (req, res) => {
+  Grid.findOne({ _id: req.params.gId }).then((grid) => {
+      Column.findOneAndUpdate({_id: req.params.cId}, req.body, {new: true}).then(column => res.json(column))
+    
+  
+  });
+});
+
+
+router.delete("/:gId/:cId/", (req, res) => {
+  Grid.findOne({ _id: req.params.gId }).then((grid) => {
+      Column.findOneAndDelete({_id: req.params.cId}).then(column => res.json(column))
+      
+    });
+  });
+
 
 module.exports = router;
