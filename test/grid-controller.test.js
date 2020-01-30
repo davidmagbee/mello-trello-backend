@@ -5,7 +5,7 @@ const chai = require("chai")
 const package = require("../package.json")
 const api = supertest('http://localhost:5000')
 
-//// Be sure to revert any post, put, or delete to strengthen tests!
+
 
 describe("package.json dependencies", () => {
   it("should contain Express", done => {
@@ -20,7 +20,7 @@ describe("package.json dependencies", () => {
 })
 
 describe("The project file structure ", () => {
-  it("should have a gridController at ./controllers/grid-controller.js", done => {
+  it("should have a gridController at ./controllers/grid.js", done => {
     let importMessagesController = require("../controllers/grid-controller.js")
 
     // expect(importMessagesController).to.not.throw()
@@ -28,7 +28,7 @@ describe("The project file structure ", () => {
     done()
   })
 
-  it("should have a gridController at ./controllers/grid-controller.js", done => {
+  it("should have a gridController at ./controllers/grid.js", done => {
     let importMessagesController = require("../controllers/grid-controller.js")
 
     // expect(importMessagesController).to.not.throw()
@@ -43,18 +43,6 @@ describe("The project file structure ", () => {
     done()
   })
 
-  it("should have a Column model inside ./models/Column.js", done => {
-    let importModel = require("../models/Column")
-    expect(importModel).to.not.throw()
-    expect(importModel).not.to.be.undefined
-    done()
-  })
-  it("should have a Comment model inside ./models/Comment.js", done => {
-    let importModel = require("../models/Comment")
-    expect(importModel).to.not.throw()
-    expect(importModel).not.to.be.undefined
-    done()
-  })
   it("should have a Task model inside ./models/Task.js", done => {
     let importModel = require("../models/Task")
     expect(importModel).to.not.throw()
@@ -80,7 +68,6 @@ describe("GET /grids",  () => {
             done();
           });
   });
-  // maybe refactor to test for data types here
   it("should return an array of objects that have a field called 'gridName'", done => {
     api
       .get("/grids")
@@ -93,83 +80,89 @@ describe("GET /grids",  () => {
   
 });
 describe('POST /grids', () => {
-    before(done => {
+  before(done => {
         api
         .post("/grids")
         .set("Accept", "application/json")
         .send({
             "gridName": "Test Board",
             "color": "Red",
-            "gridDescription": "lorem ipsum"
+            "gridDescription": "lorem ipsum some"
         })
         .end(done);   
   })
-  // How is this different than the GET test? 
-  // You should test for the something related to the data post
-  it("should return an array of objects that have a field called 'gridName'", done => {
+  it("Post should have a 'length' equal to 2", done => {
+    let id
     api
       .get("/grids")
       .set("Accept", "application/json")
       .end((err, res) => {
-        expect(res.body.every(i => i.gridName)).to.be.true;
-        done();
-      });
-  });
-
-  // it("should have a 'gridName' equal to Test Board", done => {
-  //   api
-  //     .get("/grids")
-  //     .set("Accept", "application/json")
-  //     .end((err, res) => {
-  //       let length = res.body.length;
-  //       console.log('res.body[length - 1].gridName = '+res.body[length].gridName)
-  //       expect(res.body[length-1].gridName).to.equal('Test Board')
-  //       done();
-  //     });
-  // });
-  
+        id = res.body[res.body.length-1]._id
+        expect(res.body.length).to.equal(2)
+      })
+    api
+    .delete("/grids/"+id)
+    .set("Accept", "application/json")
+    .end(done)
+  })
 })
-describe("DELETE /grids", () => {
+
+describe("PUT /:id ", () => {
+    let id;
     before(done => {
       api
-      // this DELETES EVERY SINGLE GRID...
-        .delete("/grids")
-        .set("Accept", "application/json")
-        .end(done);
-        
-    });
-    // this test is built to pass no matter what... must refactor...
-    it("should update a grid object to the collection grid", done => {
-      api
-        .get("/grids")
-        .set("Accept", "application/json")
-        .end((err, res) => {
-            console.log('res.body.length'+ res.body.length)
-          expect(res.body.length).to.equal(res.body.length);
-          done();
-        });
-    });
-    describe("PUT /grids", () => {
-        before(done => {
+      .get("/grids")
+      .set("Accept", "application/json")
+      .end((err, res) => {
+        length = res.body.length;
+        id = res.body[1]._id;
+        console.log('id 1 = '+ id)
+        done();
+      });
           api
-            .put("/grids")
-            .send({
-              gridName: "example Column",
-              color: "#123151"
-            })
+            .put("/grids/"+id)
             .set("Accept", "application/json")
+            .send({
+              gridName: "Test Board",
+              color: "#123152",
+            })
             .end(done);
         });
-// this test is built to pass no matter what... must refactor...
-        it("should add a grid object to the collection grid and return it", done => {
+        it("should modify example Column object on the collection grid and return it", done => {
+          console.log('id 2 = '+ id)
+          api
+            .get("/grids/"+id)
+            .set("Accept", "application/json")
+            .end((err, res) => {
+              expect(res.body.color).to.equal('Red');
+              done();
+            });
+        });
+});
+      describe("DELETE /grids/:id", () => {
+        let id;
+        before(done => {
+          api
+          .get("/grids")
+          .set("Accept", "application/json")
+           .end((err, res) => {
+          id = res.body[0]._id;
+         done();
+      });
+          api
+            .delete("/grids/"+id)
+            .set("Accept", "application/json")
+            .end(done);
+            
+        });
+        it("should delete a grid object by id from the collection grid", done => {
           api
             .get("/grids")
             .set("Accept", "application/json")
             .end((err, res) => {
-                console.log('res.body = '+res.body.length)
-              expect(res.body.length).to.equal(res.body.length);
+                let length = res.body.length
+              expect(length).to.equal(2);
               done();
             });
         });
-      });
-  });
+    })
