@@ -5,7 +5,7 @@ const chai = require("chai")
 const package = require("../package.json")
 const api = supertest('http://localhost:5000')
 
-
+//// Be sure to revert any post, put, or delete to strengthen tests!
 
 describe("package.json dependencies", () => {
   it("should contain Express", done => {
@@ -64,25 +64,26 @@ describe("The project file structure ", () => {
 })
 
 
-describe("GET /grid",  () => {
+describe("GET /grids",  () => {
     it('should return a 200 response', done => {
         api
-      .get("/grid")
+      .get("/grids")
       .set("Accept", "application/json")
       .expect(200, done)
     });
     it("should return an array", done => {
         api
-          .get("/grid")
+          .get("/grids")
           .set("Accept", "application/json")
           .end((error, response) => {
             expect(response.body).to.be.an('array');
             done();
           });
   });
+  // maybe refactor to test for data types here
   it("should return an array of objects that have a field called 'gridName'", done => {
     api
-      .get("/grid")
+      .get("/grids")
       .set("Accept", "application/json")
       .end((err, res) => {
         expect(res.body.every(i => i.gridName)).to.be.true;
@@ -91,10 +92,10 @@ describe("GET /grid",  () => {
   });
   
 });
-describe('POST /grid', () => {
+describe('POST /grids', () => {
     before(done => {
         api
-        .post("/grid")
+        .post("/grids")
         .set("Accept", "application/json")
         .send({
             "gridName": "Test Board",
@@ -103,9 +104,11 @@ describe('POST /grid', () => {
         })
         .end(done);   
   })
+  // How is this different than the GET test? 
+  // You should test for the something related to the data post
   it("should return an array of objects that have a field called 'gridName'", done => {
     api
-      .get("/grid")
+      .get("/grids")
       .set("Accept", "application/json")
       .end((err, res) => {
         expect(res.body.every(i => i.gridName)).to.be.true;
@@ -113,31 +116,32 @@ describe('POST /grid', () => {
       });
   });
 
-  it("should have a 'gridName' equal to Test Board", done => {
-    api
-      .get("/grid")
-      .set("Accept", "application/json")
-      .end((err, res) => {
-        let length = res.body.length;
-        console.log('res.body[length - 1].gridName = '+res.body[length].gridName)
-        expect(res.body[length].gridName).to.equal('Test Board')
-        done();
-      });
-  });
+  // it("should have a 'gridName' equal to Test Board", done => {
+  //   api
+  //     .get("/grids")
+  //     .set("Accept", "application/json")
+  //     .end((err, res) => {
+  //       let length = res.body.length;
+  //       console.log('res.body[length - 1].gridName = '+res.body[length].gridName)
+  //       expect(res.body[length-1].gridName).to.equal('Test Board')
+  //       done();
+  //     });
+  // });
   
 })
-describe("DELETE /grid", () => {
+describe("DELETE /grids", () => {
     before(done => {
       api
-      
-        .delete("/grid")
+      // this DELETES EVERY SINGLE GRID...
+        .delete("/grids")
         .set("Accept", "application/json")
         .end(done);
         
     });
+    // this test is built to pass no matter what... must refactor...
     it("should update a grid object to the collection grid", done => {
       api
-        .get("/grid")
+        .get("/grids")
         .set("Accept", "application/json")
         .end((err, res) => {
             console.log('res.body.length'+ res.body.length)
@@ -145,10 +149,10 @@ describe("DELETE /grid", () => {
           done();
         });
     });
-    describe("PUT /grid", () => {
+    describe("PUT /grids", () => {
         before(done => {
           api
-            .put("/grid")
+            .put("/grids")
             .send({
               gridName: "example Column",
               color: "#123151"
@@ -156,10 +160,10 @@ describe("DELETE /grid", () => {
             .set("Accept", "application/json")
             .end(done);
         });
-
+// this test is built to pass no matter what... must refactor...
         it("should add a grid object to the collection grid and return it", done => {
           api
-            .get("/grid")
+            .get("/grids")
             .set("Accept", "application/json")
             .end((err, res) => {
                 console.log('res.body = '+res.body.length)

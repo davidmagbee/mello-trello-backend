@@ -12,7 +12,7 @@ Later versions of the application will see increased functionality of task assig
 - [frontend repo](https://github.com/svkalvakolanu/teamgridFE)
 - [backend repo](https://github.com/macuser413/mello-trello-backend)
 - [frontend deployment](https://teamgrid.herokuapp.com/)
-- [backend deployment]()
+- [backend deployment](https://teamgrid-be.herokuapp.com/)
 
 ## Entity-Relationship Diagram
 - [Entity-Relationship Diagram](https://ibb.co/y55VzYJ)
