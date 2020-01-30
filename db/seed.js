@@ -10,7 +10,7 @@ Grid.deleteMany({}).then(() => {
     console.log("deleted all tasks");
     Task.create({
       taskName: "example Task",
-      taskDescription: "lorem ipsum",
+      taskDescription: "lorem ipsum"
     }).then(task => {
       // create column and associate one with a task
       console.log(task);
@@ -20,6 +20,20 @@ Grid.deleteMany({}).then(() => {
         color: "#123151",
         gridDescription: "column Description",
         tasks: task.id
+      });
+      Task.create({
+        taskName: "Task 2",
+        taskDescription: "ipsum"
+      }).then(task => {
+        // create column and associate one with a task
+        console.log(task);
+        // create grid and associate one with a column
+        Grid.create({
+          gridName: "Grid 2",
+          color: "#123151",
+          gridDescription: "Grid dos",
+          tasks: task.id
+        });
       });
     });
   });
