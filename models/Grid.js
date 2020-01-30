@@ -5,10 +5,10 @@ const GridSchema = new Schema({
   gridName: String,
   color: String,
   gridDescription: String,
-  columns: [
+  tasks: [
     {
     type: Schema.Types.ObjectId,
-    ref: 'Column'
+    ref: 'Task'
     }
   ]
 });
