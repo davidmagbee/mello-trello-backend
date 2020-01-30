@@ -2,10 +2,23 @@ const express = require("express");
 const router = express.Router();
 
 const Grid = require("../models/Grid");
+const Task = require("../models/Task");
+
+
+// router.get("/", (req, res) => {
+//   Grid.find().then(grids => res.json(grids));
+// });
 
 router.get("/", (req, res) => {
-  Grid.find().then(grids => res.json(grids));
-});
+  Grid.
+  find({}).
+  populate({
+    path: 'tasks',
+    model: 'Task'
+  }).then(grids => {
+    res.json(grids)
+  });
+})
 
 router.get("/:id", (req, res) => {
   Grid.findOne({ _id: req.params.id }).then(grid => {
