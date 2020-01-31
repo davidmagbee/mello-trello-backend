@@ -114,8 +114,6 @@ Current Component Tree:
     └── Layout.js
 ```
 
-## Time Frames
-
 ## Models
 1. Grid
 - This holds and references the Columns and Grid CRUD functionality.
@@ -126,10 +124,19 @@ Current Component Tree:
 4. Comments
 - This holds Comments and Comment CRUD functionality.
 
-## Time Frames
-
 ## Additional Libraries
 [Next.js](https://nextjs.org/)
+
+## Dependencies
+- express
+- body-parser
+- cors
+- node-express-mongodb-basic
+- mongoose
+- node-parser
+- chai
+- mocha
+- supertest
 
 ## Code Snippet
 We'll be using reference to route data accordingly to other models. 
@@ -150,6 +157,19 @@ const GridSchema = new Schema({
 const Grid = mongoose.model('Grid', GridSchema);
 
 module.exports = Grid;
+```
+
+```
+router.get("/", (req, res) => {
+  Grid.
+  find({}).
+  populate({
+    path: 'tasks',
+    model: 'Task'
+  }).then(grids => {
+    res.json(grids)
+  });
+})
 ```
 
 ## Issues and Resolutions

@@ -1,4 +1,4 @@
-const mongoose = require('../db/connection');
+const mongoose = require("../db/connection");
 const Schema = mongoose.Schema;
 
 const GridSchema = new Schema({
@@ -7,12 +7,12 @@ const GridSchema = new Schema({
   gridDescription: String,
   tasks: [
     {
-    type: Schema.Types.ObjectId,
-    ref: 'Task'
+      type: Schema.Types.ObjectId,
+      ref: "Task"
     }
   ]
 });
 
-const Grid = mongoose.model('Grid', GridSchema);
+const Grid = mongoose.model("Grid", GridSchema);
 
 module.exports = Grid;

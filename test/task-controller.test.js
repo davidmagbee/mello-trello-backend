@@ -30,11 +30,10 @@ describe("POST /tasks", () => {
       .set("Accept", "application/json")
       .end((err, res) => {
         expect(res.body[0].tasks.length).to.equal(2);
-        done()
+        done();
       });
+  });
 });
-})
-
 
 describe("PUT /tasks", () => {
   before(done => {
@@ -43,7 +42,7 @@ describe("PUT /tasks", () => {
       .set("Accept", "application/json")
       .end((err, res) => {
         gridToUpdate = res.body[0]._id;
-        taskToUpdate= res.body[0].tasks[1]._id
+        taskToUpdate = res.body[0].tasks[1]._id;
         done();
       });
   });
@@ -64,20 +63,19 @@ describe("PUT /tasks", () => {
       .set("Accept", "application/json")
       .end((err, res) => {
         expect(res.body[0].tasks[1].taskName).to.equal("put test");
-        done()
+        done();
       });
+  });
 });
-})
-
 
 describe("DELETE /tasks", () => {
-before(done => {
+  before(done => {
     api
       .get("/grids")
       .set("Accept", "application/json")
       .end((err, res) => {
         gridToUpdate = res.body[0]._id;
-        taskToUpdate= res.body[0].tasks[1]._id
+        taskToUpdate = res.body[0].tasks[1]._id;
         done();
       });
   });
@@ -94,7 +92,7 @@ before(done => {
       .set("Accept", "application/json")
       .end((err, res) => {
         expect(res.body[0].tasks.length).to.equal(1);
-        done()
+        done();
       });
+  });
 });
-})

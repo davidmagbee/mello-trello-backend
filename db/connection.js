@@ -1,18 +1,15 @@
 // Specify the backend mongodb connection string
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-mongoose.Promise = Promise
+mongoose.Promise = Promise;
 
-// const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/project3'
-
-// deployment mongoURI
 let mongoURI = "";
 if (process.env.NODE_ENV === "production") {
-    mongoURI = process.env.DB_URL;
+  mongoURI = process.env.DB_URL;
 } else {
-    mongoURI = 'mongodb://localhost/project3';
+  mongoURI = "mongodb://localhost/project3";
 }
 
-mongoose.connect(mongoURI, { useNewUrlParser: true })
+mongoose.connect(mongoURI, { useNewUrlParser: true });
 
-module.exports = mongoose
+module.exports = mongoose;
