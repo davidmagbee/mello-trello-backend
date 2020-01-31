@@ -3,35 +3,26 @@ const mongoose = require("./connection");
 const Grid = require("../models/Grid");
 const Task = require("../models/Task");
 
-// clear the database of records using both models
 Grid.deleteMany({}).then(() => {
-  console.log("deleted all grids");
   Task.deleteMany({}).then(() => {
-    console.log("deleted all tasks");
     Task.create({
-      taskName: "example Task",
-      taskDescription: "lorem ipsum"
+      taskName: "Utilize MERN stack",
+      taskDescription: "Integrate Mongo Atlas"
     }).then(task => {
-      // create column and associate one with a task
-      console.log(task);
-      // create grid and associate one with a column
       Grid.create({
-        gridName: "example Column",
+        gridName: "Portfolio",
         color: "#123151",
-        gridDescription: "column Description",
+        gridDescription: "Revisit and refactor portfolio",
         tasks: task.id
       });
       Task.create({
-        taskName: "Task 2",
-        taskDescription: "ipsum"
+        taskName: "Scoring functionality",
+        taskDescription: "Score whether the user's guess is correct or not."
       }).then(task => {
-        // create column and associate one with a task
-        console.log(task);
-        // create grid and associate one with a column
         Grid.create({
-          gridName: "Grid 2",
+          gridName: "Python Project",
           color: "#123151",
-          gridDescription: "Grid dos",
+          gridDescription: "Build a simple game using Python",
           tasks: task.id
         });
       });
